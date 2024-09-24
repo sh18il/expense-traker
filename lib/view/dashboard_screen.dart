@@ -15,6 +15,7 @@ class DashboardScreen extends StatelessWidget {
     final totalExpense = Provider.of<ExpenseProvider>(context, listen: false);
 
     return Scaffold(
+      backgroundColor: Color.fromARGB(0, 175, 177, 177),
       appBar: AppBar(
         actions: [
           IconButton(
@@ -38,7 +39,7 @@ class DashboardScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Card(
-                  color: Color(0xFFEE8E46),
+                  color: Color(0xFF8FB9A8),
                   child: Container(
                     height: 200,
                     child: Column(
@@ -60,14 +61,15 @@ class DashboardScreen extends StatelessWidget {
                                       'Total Expenses: \$',
                                       style: TextStyle(
                                           fontSize: 21,
-                                          fontWeight: FontWeight.bold),
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white),
                                     ),
                                     Text(
                                       ' ${amount.toStringAsFixed(2)}',
                                       style: TextStyle(
-                                          fontSize: 34,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.red),
+                                        fontSize: 25,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -77,24 +79,6 @@ class DashboardScreen extends StatelessWidget {
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              InkWell(
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => HistoryScreen(),
-                                      ));
-                                },
-                                child: Text(
-                                  "History",
-                                  style: TextStyle(color: Colors.blue),
-                                ),
-                              )
-                            ],
-                          ),
                         )
                       ],
                     ),
@@ -104,29 +88,6 @@ class DashboardScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  InkWell(
-                    onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              ChartScreen(expenses: totalExpense.expenses),
-                        )),
-                    child: Card(
-                      color: Colors.blueAccent,
-                      child: Container(
-                        height: 150,
-                        width: 110,
-                        child: Center(
-                            child: Text(
-                          "Charts",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16),
-                        )),
-                      ),
-                    ),
-                  ),
                   InkWell(
                     onTap: () => showDialog(
                       context: context,
@@ -149,8 +110,7 @@ class DashboardScreen extends StatelessWidget {
                               Container(
                                 height: 450,
                                 padding: EdgeInsets.all(16),
-                                child:
-                                    AddExpenseScreen(), // Show the AddExpenseScreen here
+                                child: AddExpenseScreen(),
                               ),
                             ],
                           ),
@@ -158,9 +118,9 @@ class DashboardScreen extends StatelessWidget {
                       },
                     ),
                     child: Card(
-                      color: Colors.blueAccent,
+                      color: Color(0xFFF305F72),
                       child: Container(
-                        height: 150,
+                        height: 100,
                         width: 110,
                         child: Center(
                             child: Text(
@@ -172,7 +132,54 @@ class DashboardScreen extends StatelessWidget {
                         )),
                       ),
                     ),
-                  )
+                  ),
+                  InkWell(
+                    onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              ChartScreen(expenses: totalExpense.expenses),
+                        )),
+                    child: Card(
+                      color: Color(0xFFF305F72),
+                      child: Container(
+                        height: 100,
+                        width: 110,
+                        child: Center(
+                            child: Text(
+                          "Charts",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16),
+                        )),
+                      ),
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => HistoryScreen(),
+                          ));
+                    },
+                    child: Card(
+                      color: Color(0xFFF305F72),
+                      child: Container(
+                        height: 100,
+                        width: 110,
+                        child: Center(
+                            child: Text(
+                          "History",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16),
+                        )),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ],
